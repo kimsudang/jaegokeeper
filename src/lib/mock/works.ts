@@ -9,7 +9,7 @@ export const generateMockAlbas = (count: number = 5, storeId: number = 1): Alba[
         storeId,
         albaName: sampleAlbaNames[index % sampleAlbaNames.length],
         albaPhone: `010-${String(Math.floor(Math.random() * 9000) + 1000)}-${String(Math.floor(Math.random() * 9000) + 1000)}`,
-        albaStatus: "재직" as const,
+        albaStatus: "STAFF" as const,
         createdAt: new Date().toISOString(),
         isActive: true,
     }));
@@ -29,14 +29,14 @@ export const generateMockWorks = (albas: Alba[], weekStartDate?: Date): Work[] =
             const isPast = workDate <= today;
 
             if (isWorkDay && isPast) {
-                const status = Math.random() > 0.1 ? "출근" : "지각";
+                const status = Math.random() > 0.1 ? "ON" : "LATE";
 
                 works.push({
                     workId: works.length + 1,
                     albaId: alba.albaId,
                     workDate: workDate.toISOString().split("T")[0],
                     workIn: `${8 + Math.floor(Math.random() * 2)}:${String(Math.floor(Math.random() * 60)).padStart(2, "0")}`,
-                    workOut: status === "출근" ? `${17 + Math.floor(Math.random() * 2)}:${String(Math.floor(Math.random() * 60)).padStart(2, "0")}` : undefined,
+                    workOut: status === "ON" ? `${17 + Math.floor(Math.random() * 2)}:${String(Math.floor(Math.random() * 60)).padStart(2, "0")}` : undefined,
                     workStatus: status,
                 });
             } else if (!isWorkDay && isPast) {
@@ -44,7 +44,7 @@ export const generateMockWorks = (albas: Alba[], weekStartDate?: Date): Work[] =
                     workId: works.length + 1,
                     albaId: alba.albaId,
                     workDate: workDate.toISOString().split("T")[0],
-                    workStatus: "휴무",
+                    workStatus: "DAYOFF",
                 });
             }
         });

@@ -18,7 +18,7 @@ export function AttendanceSection({ works, albas }: AttendanceSectionProps) {
     // 오늘 출근한 알바생 수 계산
     const todayDateStr = today.toISOString().split("T")[0];
     const todayWorks = works.filter(
-        (w) => w.workDate === todayDateStr && w.workStatus === "출근"
+        (w) => w.workDate === todayDateStr && w.workStatus === "ON"
     );
 
     return (

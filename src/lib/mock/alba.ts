@@ -54,11 +54,11 @@ export const generateMockAlbaList = (count: number = 20): Alba[] => {
         let albaStatus: AlbaStatus;
         const statusRandom = Math.random();
         if (statusRandom < 0.6) {
-            albaStatus = "재직";
+            albaStatus = "STAFF";
         } else if (statusRandom < 0.85) {
-            albaStatus = "단기";
+            albaStatus = "PART";
         } else {
-            albaStatus = "퇴사";
+            albaStatus = "RESIGN";
         }
 
         // 전화번호 생성 (010-XXXX-XXXX)
@@ -67,7 +67,7 @@ export const generateMockAlbaList = (count: number = 20): Alba[] => {
         const albaPhone = `010-${middle}-${last}`;
 
         // 퇴사자는 근무일과 근무상태 없음
-        if (albaStatus === "퇴사") {
+        if (albaStatus === "RESIGN") {
             return {
                 albaId,
                 albaName,
@@ -84,17 +84,17 @@ export const generateMockAlbaList = (count: number = 20): Alba[] => {
         let workStatus: WorkStatus;
         const workStatusRandom = Math.random();
         if (workStatusRandom < 0.5) {
-            workStatus = "출근";
+            workStatus = "ON";
         } else if (workStatusRandom < 0.7) {
-            workStatus = "휴무";
+            workStatus = "DAYOFF";
         } else if (workStatusRandom < 0.85) {
-            workStatus = "퇴근";
+            workStatus = "OFF";
         } else if (workStatusRandom < 0.93) {
-            workStatus = "대타";
+            workStatus = "COVER";
         } else if (workStatusRandom < 0.98) {
-            workStatus = "지각";
+            workStatus = "LATE";
         } else {
-            workStatus = "결근";
+            workStatus = "NOSHOW";
         }
 
         return {
